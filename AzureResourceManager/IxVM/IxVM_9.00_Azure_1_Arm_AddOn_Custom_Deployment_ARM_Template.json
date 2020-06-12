@@ -6,10 +6,6 @@
 			"defaultValue": "Ixia_VE_Azure_9.00",
 			"type": "String"
 		},
-		"PageBlobsStorageAccountName": {
-			"defaultValue": "Ixia_VE_Page_Blobs",
-			"type": "String"
-		},
 		"DiagnosticsStorageAccountName": {
 			"defaultValue": "Ixia_VE_Diagnostics",
 			"type": "String"
@@ -29,18 +25,6 @@
 		"ManagementSecurityRuleSourceIPPrefix": {
 			"defaultValue": "42.42.42.42/32",
 			"type": "String"
-		},
-        "IxiaClientPageBlobName": {
-			"defaultValue": "IxLoad_VE_Client_9.00.vhd",
-			"type": "String"
-		},
-        "IxLoadClientVmSize": {
-			"defaultValue": "Standard_F4s",
-			"type": "String",
-			"allowedValues": [
-				"Standard_F4s",
-				"Standard_F4s_v2"
-			]
 		},
 		"VirtualTestAppliance1Eth0IpAddress": { 
 			"defaultValue": "10.0.10.13",
@@ -97,18 +81,10 @@
         "MgmtHttpsSecurityRuleName": "[concat(variables('OptionalVMPrefix'), '_', 'IXIA_AZURE_HTTPS_RULE')]",
         "MgmtRdpSecurityRuleName": "[concat(variables('OptionalVMPrefix'), '_', 'IXIA_AZURE_RDP_RULE')]",
         "ManagementSecurityRuleSourceIPPrefix": "[parameters('ManagementSecurityRuleSourceIPPrefix')]",
-        "IxiaClientEth0Name": "[concat(variables('OptionalVMPrefix'), '_', 'IXIA_AZURE_IXLOAD_CLIENT_ETH0')]",
         "VirtualTestAppliance1Eth0Name": "[concat(variables('OptionalVMPrefix'), '_', 'IXIA_AZURE_IXLOAD_VIRTUALTESTAPPLIANCE1_ETH0')]",
         "VirtualTestAppliance1Eth1Name": "[concat(variables('OptionalVMPrefix'), '_', 'IXIA_AZURE_IXLOAD_VIRTUALTESTAPPLIANCE1_ETH1')]",
 		"VirtualTestAppliance1Eth0IpAddress": "[parameters('VirtualTestAppliance1Eth0IpAddress')]",
 		"VirtualTestAppliance1Eth1IpAddresses": "[parameters('VirtualTestAppliance1Eth1IpAddresses')]",
-        "IxiaClientName": "[concat(variables('OptionalVMPrefix'), '-', 'IXIA-AZURE-IXLOAD-CLIENT')]",
-		"IxiaClientDnsLabel": "[concat(toLower(variables('OptionalVMPrefix')), '-', toLower(replace(resourceGroup().name, '_', '-')), '-', 'ixia-ixload-client', '-', substring(uniqueString(resourceGroup().id),0,6))]",
-        "IxiaClientEnableAcceleratedNetworking": false,
-        "IxiaClientEnableIPForwarding": false,
-		"IxiaClientBootDiagnosticsEnabled": true,
-        "IxLoadClientVmSize": "[parameters('IxLoadClientVmSize')]",
-		"IxiaClientDiskSizeGB": "127",
         "VirtualTestAppliance1Name": "[concat(variables('OptionalVMPrefix'), '-', 'IXIA-AZURE-IXLOAD-VIRTUALTESTAPPLIANCE1')]",
 		"VirtualTestAppliance1DnsLabel": "[concat(toLower(variables('OptionalVMPrefix')), '-', toLower(replace(resourceGroup().name, '_', '-')), '-', 'ixia-ixload-virtualtestappliance-1', '-', substring(uniqueString(resourceGroup().id),0,6))]",
         "VirtualTestApplianceEnableAcceleratedNetworking": true,
@@ -120,9 +96,6 @@
 		"VirtualTestApplianceDiskSizeGB": "14",
         "MgmtPublicIpAddressName": "[concat(variables('OptionalVMPrefix'), '_', 'IXIA_AZURE_MGMT_PUBLIC_IP')]",
         "VirtualTestAppliance1Eth0PublicIpAddressName": "[concat(variables('OptionalVMPrefix'), '_', 'IXIA_AZURE_IXLOAD_VIRTUALTESTAPPLIANCE1_ETH0_PUBLIC_IP')]",
-        "IxiaClientPageBlobName": "[parameters('IxiaClientPageBlobName')]",
-		"IxiaClientPageBlobPath": "[concat('/vhds/', variables('IxiaClientPageBlobName'))]",
-		"IxiaClientCreateOption": "Attach",
         "VirtualTestApplianceImageName": "[parameters('VirtualTestApplianceImageName')]",
 		"VirtualTestApplianceImageId": "[concat('/subscriptions/', variables('SubscriptionId'), '/resourceGroups/', variables('ImageResourceGroupName'), '/providers/Microsoft.Compute/images/', variables('VirtualTestApplianceImageName'))]",		
 		"VirtualTestApplianceCreateOption": "FromImage",		
@@ -248,56 +221,7 @@
             },
             "dependsOn": []
         }, 
-        
-        {
-            "type": "Microsoft.Network/networkInterfaces",
-            "name": "[variables('IxiaClientEth0Name')]",
-            "apiVersion": "[variables('apiVersion')]",
-            "location": "[resourceGroup().location]",
-            "scale": null,
-			"tags": {
-				"Owner": "[variables('UserEmailTag')]",
-			    "Project": "[variables('UserProjectTag')]",
-				"ResourceGroup": "[resourceGroup().name]",
-				"Location": "[resourceGroup().location]"
-			},
-            "properties": {
-                "ipConfigurations": [
-                    {
-                        "name": "ipconfig1",
-                        "properties": {
-                            "privateIPAllocationMethod": "Dynamic",
-                             "publicIPAddress": {
-                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('MgmtPublicIpAddressName'))]"
-                            },                           
-                            "subnet": {
-                                "id": "[variables('MgmtSubnetRef')]"
-                            },
-                            "primary": true,
-                            "privateIPAddressVersion": "IPv4"
-                        }
-                    }
-                ],
-                "dnsSettings": {
-                    "dnsServers": [],
-                    "appliedDnsServers": []
-                },
-                "enableAcceleratedNetworking": "[variables('IxiaClientEnableAcceleratedNetworking')]",
-                "enableIPForwarding": "[variables('IxiaClientEnableIPForwarding')]",
-                "networkSecurityGroup": {
-                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('MgmtNetworkSecurityGroupName'))]"
-                },
-                "primary": true,
-                "virtualMachine": {
-                    "id": "[resourceId('Microsoft.Compute/virtualMachines', variables('IxiaClientName'))]"
-                }
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('MgmtNetworkSecurityGroupName'))]",
-                "[resourceId('Microsoft.Network/publicIPAddresses', variables('MgmtPublicIpAddressName'))]"
-            ]
-        },
-                   
+
         {
             "type": "Microsoft.Network/networkInterfaces",
             "name": "[variables('VirtualTestAppliance1Eth0Name')]",
@@ -498,30 +422,6 @@
 
         {
             "type": "Microsoft.Network/publicIPAddresses",
-            "name": "[variables('MgmtPublicIpAddressName')]",
-            "apiVersion": "[variables('apiVersion')]",
-            "location": "[resourceGroup().location]",
-            "scale": null,
-			"tags": {
-				"Owner": "[variables('UserEmailTag')]",
-			    "Project": "[variables('UserProjectTag')]",
-				"ResourceGroup": "[resourceGroup().name]",
-				"Location": "[resourceGroup().location]"
-			},
-            "properties": {
-                "publicIPAddressVersion": "IPv4",
-                "publicIPAllocationMethod": "Dynamic",
-                "idleTimeoutInMinutes": 4,
-                "dnsSettings": {
-                    "domainNameLabel": "[variables('IxiaClientDnsLabel')]",
-                    "fqdn": "[concat(variables('IxiaClientDnsLabel'),'.', resourceGroup().location,'.cloudapp.azure.com')]"
-                }
-            },
-            "dependsOn": []
-        },
-
-        {
-            "type": "Microsoft.Network/publicIPAddresses",
             "name": "[variables('VirtualTestAppliance1Eth0PublicIpAddressName')]",
             "apiVersion": "[variables('apiVersion')]",
             "location": "[resourceGroup().location]",
@@ -543,57 +443,6 @@
             },
             "dependsOn": []
         },
-
-        {
-            "type": "Microsoft.Compute/virtualMachines",
-            "name": "[variables('IxiaClientName')]",
-            "apiVersion": "[variables('apiVersion')]",
-            "location": "[resourceGroup().location]",
-            "scale": null,
-			"tags": {
-				"Owner": "[variables('UserEmailTag')]",
-			    "Project": "[variables('UserProjectTag')]",
-				"ResourceGroup": "[resourceGroup().name]",
-				"Location": "[resourceGroup().location]"
-			},
-            "properties": {
-                "hardwareProfile": {
-                    "vmSize": "[variables('IxLoadClientVmSize')]"
-                },
-                "storageProfile": {
-                    "osDisk": {
-                        "osType": "Windows",
-                        "name": "[concat('disk_', variables('IxiaClientName'))]",
-                        "createOption": "[variables('IxiaClientCreateOption')]",
-                        "vhd": {
-                            "uri": "[concat('https', '://', variables('PageBlobsStorageAccountName'), '.blob.core.windows.net', variables('IxiaClientPageBlobPath'))]"
-                        },
-                        "caching": "ReadWrite",
-                        "diskSizeGB": "[variables('IxiaClientDiskSizeGB')]"
-                    },
-                    "dataDisks": []
-                },
-                "networkProfile": {
-                    "networkInterfaces": [
-                        {
-                            "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('IxiaClientEth0Name'))]",
-                            "properties": {
-                                "primary": true
-                            }
-                        }
-                    ]
-                },
-                "diagnosticsProfile": {
-                    "bootDiagnostics": {
-                        "enabled": "[variables('IxiaClientBootDiagnosticsEnabled')]",
-                        "storageUri": "[concat('https', '://', variables('DiagnosticsStorageAccountName'), '.blob.core.windows.net', '/')]"
-                    }
-                }
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/networkInterfaces', variables('IxiaClientEth0Name'))]"
-            ]
-        },        
 
         {
             "type": "Microsoft.Compute/virtualMachines",
