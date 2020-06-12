@@ -3,11 +3,11 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
 		"ImageResourceGroupName": {
-			"defaultValue": "IMAGES-2019",
+			"defaultValue": "Ixia_VE_Azure_9.00",
 			"type": "String"
 		},
 		"DiagnosticsStorageAccountName": {
-			"defaultValue": "bootdiagnostics2019",
+			"defaultValue": "Ixia_VE_Diagnostics",
 			"type": "String"
 		},	
 		"VnetAddressPrefix": {
@@ -23,7 +23,7 @@
 			"type": "String"
 		},
 		"ManagementSecurityRuleSourceIPPrefix": {
-			"defaultValue": "204.9.57.138/32",
+			"defaultValue": "42.42.42.42/32",
 			"type": "String"
 		},
         "IxiaClientPageBlobName": {
