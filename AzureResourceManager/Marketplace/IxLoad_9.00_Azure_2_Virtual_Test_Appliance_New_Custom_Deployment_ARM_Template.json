@@ -76,7 +76,7 @@
 			]
 		},
 		"OptionalVMPrefix": {
-			"defaultValue": "Ixia_VE",
+			"defaultValue": "Ixia",
 			"type": "String"
 		},
 		"UserEmailTag": {
@@ -84,7 +84,11 @@
 			"type": "String"
 		},
 		"UserProjectTag": {
-			"defaultValue": "Optional-Project-Tag",
+			"defaultValue": "OPEN_IXIA",
+			"type": "String"
+		},
+		"UserOptionsTag": {
+			"defaultValue": "MANUAL",
 			"type": "String"
 		}
 	},
@@ -94,6 +98,7 @@
 		"OptionalVMPrefix": "[parameters('OptionalVMPrefix')]",
 		"UserEmailTag": "[parameters('UserEmailTag')]",
 		"UserProjectTag": "[parameters('UserProjectTag')]",
+		"UserOptionsTag": "[parameters('UserOptionsTag')]",
 		"ImageResourceGroupName": "[parameters('ImageResourceGroupName')]",
 		"PageBlobsStorageAccountName": "[parameters('PageBlobsStorageAccountName')]",
 		"DiagnosticsStorageAccountName": "[parameters('DiagnosticsStorageAccountName')]",
@@ -163,6 +168,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 			    "Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -245,6 +251,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 			    "Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -328,6 +335,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 				"Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -363,6 +371,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 				"Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -398,6 +407,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 			    "Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -448,6 +458,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 			    "Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -496,6 +507,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 			    "Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -648,6 +660,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 			    "Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -696,6 +709,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 			    "Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -848,6 +862,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 			    "Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -872,6 +887,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 			    "Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -896,6 +912,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 			    "Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -920,6 +937,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 			    "Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -971,6 +989,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 				"Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -1045,6 +1064,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 				"Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},

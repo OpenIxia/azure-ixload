@@ -15,19 +15,19 @@
 			"type": "String"
 		},	
 		"VnetName": {
-			"defaultValue": "VNET_Name",
+			"defaultValue": "IXIA_AZURE_VNET",
 			"type": "String"
 		},
-        "ManagementSubnetName": {
-			"defaultValue": "Ixia_VE_Management_Subnet",
+        "MgmtSubnetName": {
+			"defaultValue": "IXIA_AZURE_VNET_MGMT_SUBNET",
 			"type": "String"
 		},
 		"Test1SubnetName": {
-			"defaultValue": "Ixia_VE_Test1_Subnet",
+			"defaultValue": "IXIA_AZURE_VNET_TEST1_SUBNET",
 			"type": "String"
 		},
         "Test2SubnetName": {
-			"defaultValue": "Ixia_VE_Test2_Subnet",
+			"defaultValue": "IXIA_AZURE_VNET_TEST2_SUBNET",
 			"type": "String"
 		},
 		"ManagementSecurityRuleSourceIPPrefix": {
@@ -76,7 +76,7 @@
 			]
 		},
 		"OptionalVMPrefix": {
-			"defaultValue": "Ixia_VE",
+			"defaultValue": "Ixia",
 			"type": "String"
 		},
 		"UserEmailTag": {
@@ -84,7 +84,11 @@
 			"type": "String"
 		},
 		"UserProjectTag": {
-			"defaultValue": "Optional-Project-Tag",
+			"defaultValue": "OPEN_IXIA",
+			"type": "String"
+		},
+		"UserOptionsTag": {
+			"defaultValue": "MANUAL",
 			"type": "String"
 		}
 	},
@@ -94,12 +98,13 @@
 		"OptionalVMPrefix": "[parameters('OptionalVMPrefix')]",
 		"UserEmailTag": "[parameters('UserEmailTag')]",
 		"UserProjectTag": "[parameters('UserProjectTag')]",
+		"UserOptionsTag": "[parameters('UserOptionsTag')]",
 		"ImageResourceGroupName": "[parameters('ImageResourceGroupName')]",
 		"PageBlobsStorageAccountName": "[parameters('PageBlobsStorageAccountName')]",
 		"DiagnosticsStorageAccountName": "[parameters('DiagnosticsStorageAccountName')]",
         "VnetName": "[parameters('VnetName')]",
-        "ManagementSubnetName": "[parameters('ManagementSubnetName')]",
-		"MgmtSubnetRef": "[resourceId(resourceGroup().name, 'Microsoft.Network/virtualNetworks/subnets', variables('VnetName'),  variables('ManagementSubnetName'))]",
+        "MgmtSubnetName": "[parameters('MgmtSubnetName')]",
+		"MgmtSubnetRef": "[resourceId(resourceGroup().name, 'Microsoft.Network/virtualNetworks/subnets', variables('VnetName'),  variables('MgmtSubnetName'))]",
         "Test1SubnetName": "[parameters('Test1SubnetName')]",
         "Test1SubnetRef": "[resourceId(resourceGroup().name, 'Microsoft.Network/virtualNetworks/subnets', variables('VnetName'),  variables('Test1SubnetName'))]",
         "Test2SubnetName": "[parameters('Test2SubnetName')]",
@@ -162,6 +167,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 			    "Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -245,6 +251,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 				"Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -280,6 +287,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 				"Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -315,6 +323,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 			    "Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -364,6 +373,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 			    "Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -411,6 +421,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 			    "Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -562,6 +573,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 			    "Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -609,6 +621,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 			    "Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -760,6 +773,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 			    "Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -784,6 +798,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 			    "Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -808,6 +823,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 			    "Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -832,6 +848,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 			    "Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -883,6 +900,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 				"Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -957,6 +975,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 				"Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},

@@ -84,11 +84,11 @@
 			"type": "String"
 		},
 		"UserProjectTag": {
-			"defaultValue": "INSIGHT_2020",
+			"defaultValue": "OPEN_IXIA",
 			"type": "String"
 		},
 		"UserOptionsTag": {
-			"defaultValue": "DAY",
+			"defaultValue": "MANUAL",
 			"type": "String"
 		}
 	},
@@ -313,7 +313,7 @@
             },
             "dependsOn": []
         }, 
-        
+
         {
             "type": "Microsoft.Network/networkInterfaces",
             "name": "[variables('IxiaClientEth0Name')]",
