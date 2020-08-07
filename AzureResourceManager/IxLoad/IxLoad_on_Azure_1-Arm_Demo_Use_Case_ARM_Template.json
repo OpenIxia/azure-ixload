@@ -3,15 +3,15 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
 		"ImageResourceGroupName": {
-			"defaultValue": "ARMDUPRE-CUSTOM-IMAGES-2020",
+			"defaultValue": "Ixia_VE_Azure_9.00",
 			"type": "String"
 		},
 		"PageBlobsStorageAccountName": {
-			"defaultValue": "imgs2020",
+			"defaultValue": "Ixia_VE_Page_Blobs",
 			"type": "String"
 		},
 		"DiagnosticsStorageAccountName": {
-			"defaultValue": "bootdiagnostics2020",
+			"defaultValue": "Ixia_VE_Diagnostics",
 			"type": "String"
 		},
 		"ManagementSecurityRuleSourceIPPrefix": {
@@ -52,11 +52,11 @@
 			"type": "String"
 		},
 		"UserProjectTag": {
-			"defaultValue": "INSIGHT_2020",
+			"defaultValue": "OPEN_IXIA",
 			"type": "String"
 		},
 		"UserOptionsTag": {
-			"defaultValue": "DAY",
+			"defaultValue": "MANUAL",
 			"type": "String"
 		}
 	},
@@ -300,7 +300,7 @@
             },
             "dependsOn": []
         }, 
-        
+
         {
             "type": "Microsoft.Network/networkInterfaces",
             "name": "[variables('IxiaClientEth0Name')]",

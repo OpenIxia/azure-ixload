@@ -22,7 +22,7 @@
 			"defaultValue": "IxLoad_VE_Client_9.00.vhd",
 			"type": "String"
 		},
-        "IxLoadClientVmSize": {
+        "IxiaClientVmSize": {
 			"defaultValue": "Standard_F4s",
 			"type": "String",
 			"allowedValues": [
@@ -44,7 +44,7 @@
 			]
 		},
 		"OptionalVMPrefix": {
-			"defaultValue": "Ixia_VE",
+			"defaultValue": "Ixia",
 			"type": "String"
 		},
 		"UserEmailTag": {
@@ -52,7 +52,11 @@
 			"type": "String"
 		},
 		"UserProjectTag": {
-			"defaultValue": "Optional-Project-Tag",
+			"defaultValue": "OPEN_IXIA",
+			"type": "String"
+		},
+		"UserOptionsTag": {
+			"defaultValue": "MANUAL",
 			"type": "String"
 		}
 	},
@@ -62,6 +66,7 @@
 		"OptionalVMPrefix": "[parameters('OptionalVMPrefix')]",
 		"UserEmailTag": "[parameters('UserEmailTag')]",
 		"UserProjectTag": "[parameters('UserProjectTag')]",
+		"UserOptionsTag": "[parameters('UserOptionsTag')]",
 		"ImageResourceGroupName": "[parameters('ImageResourceGroupName')]",
 		"PageBlobsStorageAccountName": "[parameters('PageBlobsStorageAccountName')]",
 		"DiagnosticsStorageAccountName": "[parameters('DiagnosticsStorageAccountName')]",
@@ -84,14 +89,14 @@
 		"VirtualTestAppliance1Eth0IpAddress": "10.0.10.11",
 		"VirtualTestAppliance1Eth1IpAddresses": ["10.0.2.12", "10.0.2.13", "10.0.2.14", "10.0.2.15", "10.0.2.16", "10.0.2.17", "10.0.2.18", "10.0.2.19", "10.0.2.20", "10.0.2.21"],
         "IxiaClientName": "[concat(variables('OptionalVMPrefix'), '-', 'IXIA-AZURE-IXLOAD-CLIENT')]",
-		"IxiaClientDnsLabel": "[concat(toLower(variables('OptionalVMPrefix')), '-', toLower(replace(resourceGroup().name, '_', '-')), '-', 'ixia-ixload-client', '-', substring(uniqueString(resourceGroup().id),0,6))]",
+		"IxiaClientDnsLabel": "[concat(toLower(replace(resourceGroup().name, '_', '-')), '-', 'ixia-ixload-client', '-', substring(uniqueString(resourceGroup().id),0,6))]",
         "IxiaClientEnableAcceleratedNetworking": false,
         "IxiaClientEnableIPForwarding": false,
 		"IxiaClientBootDiagnosticsEnabled": true,
-        "IxLoadClientVmSize": "[parameters('IxLoadClientVmSize')]",
+        "IxiaClientVmSize": "[parameters('IxiaClientVmSize')]",
 		"IxiaClientDiskSizeGB": "127",
         "VirtualTestAppliance1Name": "[concat(variables('OptionalVMPrefix'), '-', 'IXIA-AZURE-IXLOAD-VIRTUALTESTAPPLIANCE1')]",
-		"VirtualTestAppliance1DnsLabel": "[concat(toLower(variables('OptionalVMPrefix')), '-', toLower(replace(resourceGroup().name, '_', '-')), '-', 'ixia-ixload-virtualtestappliance-1', '-', substring(uniqueString(resourceGroup().id),0,6))]",
+		"VirtualTestAppliance1DnsLabel": "[concat(toLower(replace(resourceGroup().name, '_', '-')), '-', 'ixia-ixload-vmone-1', '-', substring(uniqueString(resourceGroup().id),0,6))]",
         "VirtualTestApplianceEnableAcceleratedNetworking": true,
         "VirtualTestApplianceEnableIPForwarding": true,
 		"VirtualTestApplianceDisablePasswordAuthentication": true,
@@ -121,6 +126,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 			    "Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -184,6 +190,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 			    "Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -267,6 +274,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 				"Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -302,6 +310,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 			    "Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -352,6 +361,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 			    "Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -400,6 +410,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 			    "Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -552,6 +563,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 			    "Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -576,6 +588,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 			    "Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
@@ -600,12 +613,13 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 			    "Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},
             "properties": {
                 "hardwareProfile": {
-                    "vmSize": "[variables('IxLoadClientVmSize')]"
+                    "vmSize": "[variables('IxiaClientVmSize')]"
                 },
                 "storageProfile": {
                     "osDisk": {
@@ -651,6 +665,7 @@
 			"tags": {
 				"Owner": "[variables('UserEmailTag')]",
 				"Project": "[variables('UserProjectTag')]",
+			    "Options": "[variables('UserOptionsTag')]",
 				"ResourceGroup": "[resourceGroup().name]",
 				"Location": "[resourceGroup().location]"
 			},

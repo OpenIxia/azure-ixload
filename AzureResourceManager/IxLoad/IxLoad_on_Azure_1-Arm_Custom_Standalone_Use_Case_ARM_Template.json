@@ -6,6 +6,10 @@
 			"defaultValue": "Ixia_VE_Azure_9.00",
 			"type": "String"
 		},
+		"PageBlobsStorageAccountName": {
+			"defaultValue": "Ixia_VE_Page_Blobs",
+			"type": "String"
+		},
 		"DiagnosticsStorageAccountName": {
 			"defaultValue": "Ixia_VE_Diagnostics",
 			"type": "String"
@@ -68,11 +72,11 @@
 			"type": "String"
 		},
 		"UserProjectTag": {
-			"defaultValue": "INSIGHT_2020",
+			"defaultValue": "OPEN_IXIA",
 			"type": "String"
 		},
 		"UserOptionsTag": {
-			"defaultValue": "DAY",
+			"defaultValue": "MANUAL",
 			"type": "String"
 		}
 	},
