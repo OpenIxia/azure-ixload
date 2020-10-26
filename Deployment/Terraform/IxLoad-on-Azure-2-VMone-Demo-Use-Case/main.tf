@@ -45,7 +45,6 @@ locals {
 	IxiaClientEnableIPForwarding = "false"
 	IxiaClientBootDiagnosticsEnabled = "true"
 	IxiaClientVmSize = var.IxiaClientVmSize
-	IxiaClientVmSize_allowedValues = ["Standard_F4s", "Standard_F4s_v2"]
 	IxiaClientDiskSizeGB = "127"
 	VirtualTestAppliance1Name = "${local.OptionalVMPrefix}-IXIA-AZURE-IXLOAD-VIRTUALTESTAPPLIANCE1"
 	VirtualTestAppliance1DnsLabel = join("", [lower(replace(local.ResourceGroupName, "_", "-")), "-", "ixia-ixload-vmone-1", "-", local.uuid])
@@ -57,7 +56,6 @@ locals {
 	VirtualTestApplianceProvisionVMAgent = "false"
 	VirtualTestApplianceBootDiagnosticsEnabled = "true"
 	VirtualTestApplianceVmSize = var.VirtualTestApplianceVmSize
-	VirtualTestApplianceVmSize_allowedValues = ["Standard_F16s", "Standard_F8s", "Standard_F4s"]
 	VirtualTestApplianceDiskSizeGB = "14"
 	MgmtPublicIpAddressName = "${local.OptionalVMPrefix}_IXIA_AZURE_MGMT_PUBLIC_IP"
 	VirtualTestAppliance1Eth0PublicIpAddressName = "${local.OptionalVMPrefix}_IXIA_AZURE_IXLOAD_VIRTUALTESTAPPLIANCE1_ETH0_PUBLIC_IP"

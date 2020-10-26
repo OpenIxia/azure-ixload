@@ -36,6 +36,10 @@ variable "IxiaClientPageBlobName" {
 variable "IxiaClientVmSize" {
 	type = string
 	default = "Standard_F4s"
+	validation {
+		condition = can(regex("Standard_F4s", var.IxiaClientVmSize)) || can(regex("Standard_F4s_v2", var.IxiaClientVmSize))
+		error_message = "IxiaClientVmSize must be one of (Standard_F4s | Standard_F4s_v2) sizes."
+	}
 }
 
 variable  "VirtualTestApplianceImageName" {
@@ -46,6 +50,10 @@ variable  "VirtualTestApplianceImageName" {
 variable "VirtualTestApplianceVmSize" {
 	type = string
 	default = "Standard_F16s"
+	validation {
+		condition = can(regex("Standard_F16s", var.VirtualTestApplianceVmSize)) || can(regex("Standard_F8s", var.VirtualTestApplianceVmSize)) || can(regex("Standard_F4s", var.VirtualTestApplianceVmSize))
+		error_message = "VirtualTestApplianceVmSize must be one of (Standard_F16s | Standard_F8s | Standard_F4s) sizes."
+	}
 }
 
 variable "OptionalVMPrefix" {
@@ -60,7 +68,7 @@ variable "UserEmailTag" {
 
 variable "UserProjectTag" {
 	type = string
-	default = "OPEN_IXIA"
+	default = "Optional-Project-Tag"
 }
 
 variable "UserOptionsTag" {
