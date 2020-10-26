@@ -68,7 +68,7 @@ variable "UserEmailTag" {
 
 variable "UserProjectTag" {
 	type = string
-	default = "OPEN_IXIA"
+	default = "Optional-Project-Tag"
 }
 
 variable "UserOptionsTag" {
