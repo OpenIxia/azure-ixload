@@ -84,7 +84,7 @@
 			"type": "String"
 		},
 		"UserProjectTag": {
-			"defaultValue": "OPEN_IXIA",
+			"defaultValue": "Optional-Project-Tag",
 			"type": "String"
 		},
 		"UserOptionsTag": {
